@@ -1,0 +1,28 @@
+{
+  "name": "discord-benchmark",
+  "version": "1.0.0",
+  "description": "Discord Bots built with the same modules between different languages and libraries to benchmark each one's performance (JS - discord.js)",
+  "main": "main.js",
+  "scripts": {
+    "test": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tinopai/discord-benchmark.git"
+  },
+  "keywords": [
+    "discord.js",
+    "bot",
+    "performance",
+    "benchmark"
+  ],
+  "author": "Tino Pai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tinopai/discord-benchmark/issues"
+  },
+  "homepage": "https://github.com/tinopai/discord-benchmark#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1"
+  }
+}
