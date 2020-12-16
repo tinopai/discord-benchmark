@@ -8,6 +8,10 @@ Check out the [GitHub Repository for Serenity](https://github.com/serenity-rs/se
 * **GPU**: NVIDIA GeForce GTX 1050 Ti
 ### Results
 Results while the bot was idling (1 guild - no messages received)
+#### **Smaps: Pss**
+```
+MEM Usage: 15,1104 MB
+```
 #### **PMAP**
 ```
 total            89652K
@@ -29,6 +33,11 @@ If you are using Linux you can benchmark using the following commands
 1. Build the BOT using `cargo build`
 2. Select one of both and follow the steps
 
+
+#### **Smaps: Pss**
+3. Run `DISCORD_TOKEN=<token> ./target/debug/discord-bot-benchmark`
+4. Get the PID
+5. Run `cat /proc/<pid>/smaps | grep -i pss |  awk '{Total+=$2} END {print Total/1024" MB"}'`
 #### **PMAP**
 3. Run `DISCORD_TOKEN=<token> ./target/debug/discord-bot-benchmark`
 4. Get the PID
@@ -36,4 +45,4 @@ If you are using Linux you can benchmark using the following commands
 #### **Massif** with Valgrind
 3. Run `DISCORD_TOKEN=<token> valgrind --tool=massif ./target/debug/discord-bot-benchmark`
 4. Close the program (`CTRL+C`)
-5. Run `ms_print massif.out.<pid> | tail -n 7`
+5. Run `ms_print massif.out.<pid> | tail -n <number: usually 7>`
