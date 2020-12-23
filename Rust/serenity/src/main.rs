@@ -1,7 +1,7 @@
 use std::env;
 use serenity::{
     async_trait,
-    model::{channel::Message, gateway::Ready},
+    model::{channel::Message, gateway::Ready, guild::Guild},
     prelude::*,
 };
 
@@ -10,12 +10,13 @@ struct Handler;
 impl EventHandler for Handler {
     // On ready handler
     async fn ready(&self, _: Context, ready: Ready) {
-        println!("{} is connected!", ready.user.name);
+        println!("Connected as '{}#{}' on {} guilds", ready.user.name, ready.user.discriminator, ready.guilds.len());
     }
 
     // Message hadler
     async fn message(&self, ctx: Context, msg: Message) {
-        println!("Received message: '{}'", msg.content)
+        let guild = Guild::get(&ctx, msg.guild_id.unwrap()).await;
+        println!("'{}'@'{}': '{}'", msg.author.name, guild.unwrap().name, msg.content);
     }
 }
 
@@ -29,7 +30,7 @@ async fn main() {
     .expect("Expected an enviroment token");
 
     // Create the client
-    let mut client = Client::new(&token)
+    let mut client = Client::builder(token)
     .event_handler(Handler)
     .await
     .expect("Error creating client.");
